@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS todo_item;
+
+CREATE TABLE todo_item
+(
+	id BIGSERIAL PRIMARY KEY,
+	text TEXT,
+	created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT now()
+);
+GRANT ALL ON TABLE todo_item TO aspnet;
