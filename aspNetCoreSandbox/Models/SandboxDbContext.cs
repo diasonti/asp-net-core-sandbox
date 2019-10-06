@@ -9,6 +9,6 @@ namespace aspNetCoreSandbox.Models
         {
         }
         
-        public DbSet<TodoItem> TodoItems { get; set; }
+        public DbSet<CrudItem> CrudItems { get; set; }
     }
 }
