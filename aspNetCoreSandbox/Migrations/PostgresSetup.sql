@@ -5,7 +5,9 @@ CREATE TABLE crud_item
 	id BIGSERIAL PRIMARY KEY,
 	text TEXT
 );
-GRANT ALL ON TABLE crud_item TO aspnet;
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO aspnet;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO aspnet;
 
 -- Sample data
 INSERT INTO crud_item (text) VALUES ('Do the dishes');

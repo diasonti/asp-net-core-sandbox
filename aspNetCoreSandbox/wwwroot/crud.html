@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Todos</title>
+    <title>CRUD sandbox</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/crud.css">
 </head>
@@ -15,9 +15,9 @@
                 <form>
                     <div class="form-group">
                         <label for="createText">Text</label>
-                        <input class="form-control" id="createText" placeholder="Enter text">
+                        <input v-model="createForm.text" class="form-control" id="createText" placeholder="Enter text">
                     </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button @click="create" type="button" class="btn btn-primary">Save</button>
                 </form>
             </div>
             <div class="col-sm">
@@ -31,7 +31,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="item in items">
+                    <tr v-for="item in items" v-cloak>
                         <th scope="row">{{ item.id }}</th>
                         <td>{{ item.text }}</td>
                     </tr>
@@ -43,13 +43,13 @@
                 <form>
                     <div class="form-group">
                         <label for="updateId">ID</label>
-                        <input type="number" class="form-control" id="updateId" placeholder="Enter ID">
+                        <input v-model="updateForm.id" @change="fillUpdate" type="number" class="form-control" id="updateId" placeholder="Enter ID">
                     </div>
                     <div class="form-group">
                         <label for="updateText">Text</label>
-                        <input class="form-control" id="updateText" placeholder="Enter text">
+                        <input v-model="updateForm.text" :disabled="!allowUpdate" class="form-control" id="updateText" placeholder="Enter text">
                     </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button @click="update" type="button" class="btn btn-primary">Save</button>
                 </form>
             </div>
             <div class="col-sm">
@@ -57,9 +57,9 @@
                 <form>
                     <div class="form-group">
                         <label for="deleteId">ID</label>
-                        <input type="number" class="form-control" id="deleteId" placeholder="Enter ID">
+                        <input v-model="deleteForm.id" type="number" class="form-control" id="deleteId" placeholder="Enter ID">
                     </div>
-                    <button type="submit" class="btn btn-primary">Delete</button>
+                    <button @click="del" type="button" class="btn btn-primary">Delete</button>
                 </form>
             </div>
         </div>
