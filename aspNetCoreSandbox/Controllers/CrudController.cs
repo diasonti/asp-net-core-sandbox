@@ -22,23 +22,32 @@ namespace aspNetCoreSandbox.Controllers
         
         // GET /api/crud/all
         [HttpGet]
-        public ActionResult<List<CrudItem>> All()
+        public ActionResult<List<CrudItemForm>> All()
         {
             List<CrudItem> items =_dbContext.CrudItems.ToList();
-            return new OkObjectResult(items);
+            List<CrudItemForm> forms = new List<CrudItemForm>();
+            items.ForEach(item => forms.Add(item.toForm()));
+            return new OkObjectResult(forms);
         }
         
-        // POST /api/crud/add
+        // POST /api/crud/save
         [HttpPost]
-        public ActionResult Save([FromBody] List<CrudItemForm> items)
+        public ActionResult Save([FromBody] CrudItemForm form)
         {
-            foreach (CrudItemForm form in items)
-            {
-                CrudItem item;
-                item = form.Id == 0 ? _dbContext.Add(new CrudItem()).Entity : _dbContext.CrudItems.Find(form.Id);
-
-                item.Text = form.Text;
-            }
+            CrudItem entity = form.Id.HasValue ? _dbContext.CrudItems.Find(form.Id.Value) : _dbContext.Add(new CrudItem()).Entity;
+            entity.Text = form.Text;
+            _dbContext.SaveChanges();
+            return new OkResult();
+        }
+        
+        // POST /api/crud/delete
+        [HttpPost]
+        public ActionResult Delete([FromBody] CrudItemForm form)
+        {
+            if (!form.Id.HasValue) 
+                return new BadRequestResult();
+            CrudItem crudItem = _dbContext.CrudItems.Find(form.Id.Value);
+            _dbContext.Remove(crudItem);
             _dbContext.SaveChanges();
             return new OkResult();
         }
