@@ -1,12 +1,11 @@
-using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using aspNetCoreSandbox.Models.Forms;
 
 namespace aspNetCoreSandbox.Models.Entities
 {
-    [Table("crud_item")]
-    public class CrudItem
+    [Table("task")]
+    public class Task
     {
         [Key]
         [Column("id")]
@@ -15,13 +14,13 @@ namespace aspNetCoreSandbox.Models.Entities
 
         [Column("text")] 
         public string Text { get; set; }
-
-        public CrudItemForm toForm()
-        {
-            CrudItemForm form = new CrudItemForm();
-            form.Id = this.Id;
-            form.Text = this.Text;
-            return form;
-        }
+        
+        [Column("class_id"), ForeignKey("Class")]
+        public long? ClassId { get; set; }
+        
+        public Class Class { get; set; }
+        
+        [InverseProperty("Task")]
+        public ICollection<TaskGrade> Grades { get; set; }
     }
 }
