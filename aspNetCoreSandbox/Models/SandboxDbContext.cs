@@ -32,6 +32,12 @@ namespace aspNetCoreSandbox.Models
                 .HasOne(link => link.Course)
                 .WithMany(c => c.StudentLinks)
                 .HasForeignKey(link => link.CourseId);
+
+            modelBuilder.Entity<IndividualTask>()
+                .HasOne(it => it.Grade)
+                .WithOne(itg => itg.Task)
+                .HasForeignKey<IndividualTaskGrade>(itg => itg.TaskId);
+
         }
     }
 }

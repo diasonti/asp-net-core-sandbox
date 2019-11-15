@@ -9,11 +9,13 @@ namespace aspNetCoreSandbox.Models.Entities
         [Key]
         [Column("id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [ForeignKey("Task")]
         public long? Id { get; set; }
 
         [Column("grade")] 
         public int? Grade { get; set; }
+        
+        [Column("task_id")]
+        public long TaskId { get; set; }
         
         public IndividualTask Task { get; set; }
     }

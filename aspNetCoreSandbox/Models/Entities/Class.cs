@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace aspNetCoreSandbox.Models.Entities
 {
-    [Table("course")]
+    [Table("class")]
     public class Class
     {
         [Key]
