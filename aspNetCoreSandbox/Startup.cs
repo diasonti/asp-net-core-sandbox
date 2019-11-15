@@ -24,7 +24,9 @@ namespace aspNetCoreSandbox
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(option => option.EnableEndpointRouting = false);
-            services.AddDbContext<SandboxDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("Postgres")));
+            services.AddDbContext<SandboxDbContext>(options => 
+                options.UseNpgsql(Configuration.GetConnectionString("Postgres"), 
+                    builder => builder.SetPostgresVersion(new Version(9, 4))));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
