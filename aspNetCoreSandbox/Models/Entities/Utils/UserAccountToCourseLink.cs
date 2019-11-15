@@ -8,13 +8,13 @@ namespace aspNetCoreSandbox.Models.Entities.Utils
     {
         [Column("user_account_id")]
         [ForeignKey("UserAccount")]
-        public int UserAccountId { get; set; }
+        public long UserAccountId { get; set; }
 
         public UserAccount UserAccount { get; set; }
         
         [Column("course_id")]
         [ForeignKey("Course")]
-        public int CourseId { get; set; }
+        public long CourseId { get; set; }
         
         public Course Course { get; set; }
     }

@@ -30,5 +30,30 @@ namespace aspNetCoreSandbox.Models.Entities
         {
             return CourseLinks.Select(link => link.Course).ToList();
         }
+
+        public void addCourse(Course course)
+        {
+            if (!course.Id.HasValue || !this.Id.HasValue)
+                return;
+            if (CourseLinks.Any(link => link.CourseId == course.Id))
+            {
+                return;
+            }
+            CourseLinks.Add(new UserAccountToCourseLink(){Course = course, CourseId = course.Id.Value, UserAccount = this, UserAccountId = this.Id.Value});
+        }
+        
+        public void removeCourse(Course course)
+        {
+            if (!course.Id.HasValue || !this.Id.HasValue)
+                return;
+            foreach (var link in CourseLinks)
+            {
+                if (link.CourseId == course.Id)
+                {
+                    CourseLinks.Remove(link);
+                    return;
+                }
+            }
+        }
     }
 }
