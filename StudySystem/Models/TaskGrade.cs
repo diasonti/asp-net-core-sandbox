@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace StudySystem.Models.Entities
+namespace StudySystem.Models
 {
-    [Table("individual_task_grade")]
-    public class IndividualTaskGrade
+    [Table("task_grade")]
+    public class TaskGrade
     {
         [Key]
         [Column("id")]
@@ -12,11 +12,11 @@ namespace StudySystem.Models.Entities
         public long? Id { get; set; }
 
         [Column("grade")] 
-        public int? Grade { get; set; }
+        public int Grade { get; set; }
         
-        [Column("task_id")]
-        public long TaskId { get; set; }
+        [Column("task_id"), ForeignKey("Task")]
+        public long? TaskId { get; set; }
         
-        public IndividualTask Task { get; set; }
+        public Task Task { get; set; }
     }
 }

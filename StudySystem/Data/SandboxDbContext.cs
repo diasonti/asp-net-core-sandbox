@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using StudySystem.Models.Entities;
-using StudySystem.Models.Entities.Utils;
+using StudySystem.Models;
 
-namespace StudySystem.Models
+namespace StudySystem.Data
 {
     public class SandboxDbContext : DbContext
     {

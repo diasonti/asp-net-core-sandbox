@@ -2,9 +2,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using StudySystem.Models.Entities.Utils;
 
-namespace StudySystem.Models.Entities
+namespace StudySystem.Models
 {
     [Table("course")]
     public class Course

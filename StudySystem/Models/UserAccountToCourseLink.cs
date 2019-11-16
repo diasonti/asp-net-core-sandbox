@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace StudySystem.Models.Entities.Utils
+namespace StudySystem.Models
 {
     [Table("user_account_to_course_link")]
     public class UserAccountToCourseLink
