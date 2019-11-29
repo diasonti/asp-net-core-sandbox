@@ -22,6 +22,8 @@ namespace StudySystem.Controllers
         // GET: IndividualTaskGrade
         public async Task<IActionResult> Index()
         {
+            ViewData["Title"] = "Individual Task Grades";
+            ViewData["page"] = "IndividualTaskGrade";
             var sandboxDbContext = _context.IndividualTaskGrades.Include(i => i.Task);
             return View(await sandboxDbContext.ToListAsync());
         }
@@ -41,7 +43,8 @@ namespace StudySystem.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Individual Task Grades";
+            ViewData["page"] = "IndividualTaskGrade";
             return View(individualTaskGrade);
         }
 
@@ -49,6 +52,8 @@ namespace StudySystem.Controllers
         public IActionResult Create()
         {
             ViewData["TaskId"] = new SelectList(_context.IndividualTasks, "Id", "Id");
+            ViewData["Title"] = "Individual Task Grades";
+            ViewData["page"] = "IndividualTaskGrade";
             return View();
         }
 
@@ -66,6 +71,8 @@ namespace StudySystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["TaskId"] = new SelectList(_context.IndividualTasks, "Id", "Id", individualTaskGrade.TaskId);
+            ViewData["Title"] = "Individual Task Grades";
+            ViewData["page"] = "IndividualTaskGrade";
             return View(individualTaskGrade);
         }
 
@@ -83,6 +90,8 @@ namespace StudySystem.Controllers
                 return NotFound();
             }
             ViewData["TaskId"] = new SelectList(_context.IndividualTasks, "Id", "Id", individualTaskGrade.TaskId);
+            ViewData["Title"] = "Individual Task Grades";
+            ViewData["page"] = "IndividualTaskGrade";
             return View(individualTaskGrade);
         }
 
@@ -119,6 +128,8 @@ namespace StudySystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["TaskId"] = new SelectList(_context.IndividualTasks, "Id", "Id", individualTaskGrade.TaskId);
+            ViewData["Title"] = "Individual Task Grades";
+            ViewData["page"] = "IndividualTaskGrade";
             return View(individualTaskGrade);
         }
 
@@ -137,7 +148,8 @@ namespace StudySystem.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Individual Task Grades";
+            ViewData["page"] = "IndividualTaskGrade";
             return View(individualTaskGrade);
         }
 

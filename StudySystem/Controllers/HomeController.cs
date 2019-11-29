@@ -20,6 +20,8 @@ namespace StudySystem.Controllers
 
         public IActionResult Index()
         {
+            ViewData["Title"] = "Home page";
+            ViewData["page"] = "Home";
             return View();
         }
     }

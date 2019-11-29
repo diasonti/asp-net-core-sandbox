@@ -22,6 +22,8 @@ namespace StudySystem.Controllers
         // GET: UserAccountToCourseLink
         public async Task<IActionResult> Index()
         {
+            ViewData["Title"] = "Student => Course Links";
+            ViewData["page"] = "UserAccountToCourseLink";
             var sandboxDbContext = _context.UserAccountToCourseLink.Include(u => u.Course).Include(u => u.UserAccount);
             return View(await sandboxDbContext.ToListAsync());
         }

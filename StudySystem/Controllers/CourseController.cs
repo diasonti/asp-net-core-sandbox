@@ -22,6 +22,8 @@ namespace StudySystem.Controllers
         // GET: Course
         public async Task<IActionResult> Index()
         {
+            ViewData["Title"] = "Courses";
+            ViewData["page"] = "Course";
             return View(await _context.Courses.ToListAsync());
         }
 
@@ -39,7 +41,8 @@ namespace StudySystem.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Courses";
+            ViewData["page"] = "Course";
             return View(course);
         }
 
@@ -62,6 +65,8 @@ namespace StudySystem.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Title"] = "Courses";
+            ViewData["page"] = "Course";
             return View(course);
         }
 
@@ -78,6 +83,8 @@ namespace StudySystem.Controllers
             {
                 return NotFound();
             }
+            ViewData["Title"] = "Courses";
+            ViewData["page"] = "Course";
             return View(course);
         }
 
@@ -113,6 +120,8 @@ namespace StudySystem.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Title"] = "Courses";
+            ViewData["page"] = "Course";
             return View(course);
         }
 
@@ -130,7 +139,8 @@ namespace StudySystem.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Courses";
+            ViewData["page"] = "Course";
             return View(course);
         }
 

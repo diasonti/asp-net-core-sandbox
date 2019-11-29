@@ -22,6 +22,8 @@ namespace StudySystem.Controllers
         // GET: TaskGrade
         public async Task<IActionResult> Index()
         {
+            ViewData["Title"] = "Task Grades";
+            ViewData["page"] = "TaskGrade";
             var sandboxDbContext = _context.TaskGrades.Include(t => t.Task);
             return View(await sandboxDbContext.ToListAsync());
         }
@@ -41,7 +43,8 @@ namespace StudySystem.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Task Grades";
+            ViewData["page"] = "TaskGrade";
             return View(taskGrade);
         }
 
@@ -49,6 +52,8 @@ namespace StudySystem.Controllers
         public IActionResult Create()
         {
             ViewData["TaskId"] = new SelectList(_context.Tasks, "Id", "Id");
+            ViewData["Title"] = "Task Grades";
+            ViewData["page"] = "TaskGrade";
             return View();
         }
 
@@ -66,6 +71,8 @@ namespace StudySystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["TaskId"] = new SelectList(_context.Tasks, "Id", "Id", taskGrade.TaskId);
+            ViewData["Title"] = "Task Grades";
+            ViewData["page"] = "TaskGrade";
             return View(taskGrade);
         }
 
@@ -83,6 +90,8 @@ namespace StudySystem.Controllers
                 return NotFound();
             }
             ViewData["TaskId"] = new SelectList(_context.Tasks, "Id", "Id", taskGrade.TaskId);
+            ViewData["Title"] = "Task Grades";
+            ViewData["page"] = "TaskGrade";
             return View(taskGrade);
         }
 
@@ -119,6 +128,8 @@ namespace StudySystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["TaskId"] = new SelectList(_context.Tasks, "Id", "Id", taskGrade.TaskId);
+            ViewData["Title"] = "Task Grades";
+            ViewData["page"] = "TaskGrade";
             return View(taskGrade);
         }
 
@@ -137,7 +148,8 @@ namespace StudySystem.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Task Grades";
+            ViewData["page"] = "TaskGrade";
             return View(taskGrade);
         }
 

@@ -22,6 +22,8 @@ namespace StudySystem.Controllers
         // GET: Class
         public async Task<IActionResult> Index()
         {
+            ViewData["Title"] = "Classes";
+            ViewData["page"] = "Class";
             var sandboxDbContext = _context.Classes.Include(c => c.Course);
             return View(await sandboxDbContext.ToListAsync());
         }
@@ -41,7 +43,8 @@ namespace StudySystem.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Classes";
+            ViewData["page"] = "Class";
             return View(clazz);
         }
 
@@ -49,6 +52,8 @@ namespace StudySystem.Controllers
         public IActionResult Create()
         {
             ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Title");
+            ViewData["Title"] = "Classes";
+            ViewData["page"] = "Class";
             return View();
         }
 
@@ -66,6 +71,8 @@ namespace StudySystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Id", clazz.CourseId);
+            ViewData["Title"] = "Classes";
+            ViewData["page"] = "Class";
             return View(clazz);
         }
 
@@ -83,6 +90,8 @@ namespace StudySystem.Controllers
                 return NotFound();
             }
             ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Id", clazz.CourseId);
+            ViewData["Title"] = "Classes";
+            ViewData["page"] = "Class";
             return View(clazz);
         }
 
@@ -119,6 +128,8 @@ namespace StudySystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Id", clazz.CourseId);
+            ViewData["Title"] = "Classes";
+            ViewData["page"] = "Class";
             return View(clazz);
         }
 
@@ -137,7 +148,8 @@ namespace StudySystem.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Classes";
+            ViewData["page"] = "Class";
             return View(clazz);
         }
 

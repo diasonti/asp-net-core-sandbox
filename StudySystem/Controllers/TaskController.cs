@@ -21,6 +21,8 @@ namespace StudySystem.Controllers
         // GET: Task
         public async Task<IActionResult> Index()
         {
+            ViewData["Title"] = "Tasks";
+            ViewData["page"] = "Task";
             var sandboxDbContext = _context.Tasks.Include(t => t.Class);
             return View(await sandboxDbContext.ToListAsync());
         }
@@ -40,7 +42,8 @@ namespace StudySystem.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Tasks";
+            ViewData["page"] = "Task";
             return View(task);
         }
 
@@ -48,6 +51,8 @@ namespace StudySystem.Controllers
         public IActionResult Create()
         {
             ViewData["ClassId"] = new SelectList(_context.Classes, "Id", "Id");
+            ViewData["Title"] = "Tasks";
+            ViewData["page"] = "Task";
             return View();
         }
 
@@ -65,6 +70,8 @@ namespace StudySystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClassId"] = new SelectList(_context.Classes, "Id", "Id", task.ClassId);
+            ViewData["Title"] = "Tasks";
+            ViewData["page"] = "Task";
             return View(task);
         }
 
@@ -82,6 +89,8 @@ namespace StudySystem.Controllers
                 return NotFound();
             }
             ViewData["ClassId"] = new SelectList(_context.Classes, "Id", "Id", task.ClassId);
+            ViewData["Title"] = "Tasks";
+            ViewData["page"] = "Task";
             return View(task);
         }
 
@@ -118,6 +127,8 @@ namespace StudySystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClassId"] = new SelectList(_context.Classes, "Id", "Id", task.ClassId);
+            ViewData["Title"] = "Tasks";
+            ViewData["page"] = "Task";
             return View(task);
         }
 
@@ -136,7 +147,8 @@ namespace StudySystem.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Tasks";
+            ViewData["page"] = "Task";
             return View(task);
         }
 

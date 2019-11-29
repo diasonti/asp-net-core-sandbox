@@ -23,6 +23,8 @@ namespace StudySystem.Controllers
         // GET: UserAccount
         public async Task<IActionResult> Index()
         {
+            ViewData["Title"] = "User Accounts";
+            ViewData["page"] = "UserAccount";
             return View(await _context.UserAccounts.ToListAsync());
         }
 
@@ -40,13 +42,16 @@ namespace StudySystem.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "User Accounts";
+            ViewData["page"] = "UserAccount";
             return View(userAccount);
         }
 
         // GET: UserAccount/Create
         public IActionResult Create()
         {
+            ViewData["Title"] = "User Accounts";
+            ViewData["page"] = "UserAccount";
             return View();
         }
 
@@ -63,6 +68,8 @@ namespace StudySystem.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Title"] = "User Accounts";
+            ViewData["page"] = "UserAccount";
             return View(userAccount);
         }
 
@@ -79,6 +86,8 @@ namespace StudySystem.Controllers
             {
                 return NotFound();
             }
+            ViewData["Title"] = "User Accounts";
+            ViewData["page"] = "UserAccount";
             return View(userAccount);
         }
 
@@ -114,6 +123,8 @@ namespace StudySystem.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Title"] = "User Accounts";
+            ViewData["page"] = "UserAccount";
             return View(userAccount);
         }
 
@@ -131,7 +142,8 @@ namespace StudySystem.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "User Accounts";
+            ViewData["page"] = "UserAccount";
             return View(userAccount);
         }
 

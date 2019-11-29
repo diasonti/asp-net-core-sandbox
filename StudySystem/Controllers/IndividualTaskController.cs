@@ -22,6 +22,8 @@ namespace StudySystem.Controllers
         // GET: IndividualTask
         public async Task<IActionResult> Index()
         {
+            ViewData["Title"] = "Individual Tasks";
+            ViewData["page"] = "IndividualTask";
             var sandboxDbContext = _context.IndividualTasks.Include(i => i.Class).Include(i => i.Student);
             return View(await sandboxDbContext.ToListAsync());
         }
@@ -42,7 +44,8 @@ namespace StudySystem.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Individual Tasks";
+            ViewData["page"] = "IndividualTask";
             return View(individualTask);
         }
 
@@ -51,6 +54,8 @@ namespace StudySystem.Controllers
         {
             ViewData["ClassId"] = new SelectList(_context.Classes, "Id", "Id");
             ViewData["StudentId"] = new SelectList(_context.Classes, "Id", "Id");
+            ViewData["Title"] = "Individual Tasks";
+            ViewData["page"] = "IndividualTask";
             return View();
         }
 
@@ -69,6 +74,8 @@ namespace StudySystem.Controllers
             }
             ViewData["ClassId"] = new SelectList(_context.Classes, "Id", "Id", individualTask.ClassId);
             ViewData["StudentId"] = new SelectList(_context.Classes, "Id", "Id", individualTask.StudentId);
+            ViewData["Title"] = "Individual Tasks";
+            ViewData["page"] = "IndividualTask";
             return View(individualTask);
         }
 
@@ -87,6 +94,8 @@ namespace StudySystem.Controllers
             }
             ViewData["ClassId"] = new SelectList(_context.Classes, "Id", "Id", individualTask.ClassId);
             ViewData["StudentId"] = new SelectList(_context.Classes, "Id", "Id", individualTask.StudentId);
+            ViewData["Title"] = "Individual Tasks";
+            ViewData["page"] = "IndividualTask";
             return View(individualTask);
         }
 
@@ -124,6 +133,8 @@ namespace StudySystem.Controllers
             }
             ViewData["ClassId"] = new SelectList(_context.Classes, "Id", "Id", individualTask.ClassId);
             ViewData["StudentId"] = new SelectList(_context.Classes, "Id", "Id", individualTask.StudentId);
+            ViewData["Title"] = "Individual Tasks";
+            ViewData["page"] = "IndividualTask";
             return View(individualTask);
         }
 
@@ -143,7 +154,8 @@ namespace StudySystem.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Individual Tasks";
+            ViewData["page"] = "IndividualTask";
             return View(individualTask);
         }
 
