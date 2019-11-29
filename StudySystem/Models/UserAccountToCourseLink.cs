@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using StudySystem.Data;
 
 namespace StudySystem.Models
@@ -26,8 +27,8 @@ namespace StudySystem.Models
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var dbContext = (SandboxDbContext) validationContext.GetService(typeof(SandboxDbContext));
-            
-            var student = dbContext.UserAccounts.Find(UserAccountId);
+
+            var student = dbContext.UserAccounts.Include(s => s.CourseLinks).First(ua => ua.Id.Equals(UserAccountId));
             var validStudent = true;
             var validCourse = true;
 

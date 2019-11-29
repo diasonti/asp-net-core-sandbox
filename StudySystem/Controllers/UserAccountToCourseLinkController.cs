@@ -26,31 +26,11 @@ namespace StudySystem.Controllers
             return View(await sandboxDbContext.ToListAsync());
         }
 
-        // GET: UserAccountToCourseLink/Details/5
-        public async Task<IActionResult> Details(long? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var userAccountToCourseLink = await _context.UserAccountToCourseLink
-                .Include(u => u.Course)
-                .Include(u => u.UserAccount)
-                .FirstOrDefaultAsync(m => m.UserAccountId == id);
-            if (userAccountToCourseLink == null)
-            {
-                return NotFound();
-            }
-
-            return View(userAccountToCourseLink);
-        }
-
         // GET: UserAccountToCourseLink/Create
         public IActionResult Create()
         {
             ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Title");
-            ViewData["UserAccountId"] = new SelectList(_context.UserAccounts, "Id", "Password");
+            ViewData["UserAccountId"] = new SelectList(_context.UserAccounts.Where(ua => ua.Role.Equals("STUDENT")), "Id", "Username");
             return View();
         }
 
@@ -68,77 +48,22 @@ namespace StudySystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Title", userAccountToCourseLink.CourseId);
-            ViewData["UserAccountId"] = new SelectList(_context.UserAccounts, "Id", "Password", userAccountToCourseLink.UserAccountId);
+            ViewData["UserAccountId"] = new SelectList(_context.UserAccounts.Where(ua => ua.Role.Equals("STUDENT")), "Id", "Username", userAccountToCourseLink.UserAccountId);
             return View(userAccountToCourseLink);
         }
 
-        // GET: UserAccountToCourseLink/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+        // GET: UserAccountToCourseLink/Delete
+        public IActionResult Delete(long? userAccountId, long? courseId)
         {
-            if (id == null)
+            if (userAccountId == null || courseId == null)
             {
                 return NotFound();
             }
 
-            var userAccountToCourseLink = await _context.UserAccountToCourseLink.FindAsync(id);
-            if (userAccountToCourseLink == null)
-            {
-                return NotFound();
-            }
-            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Title", userAccountToCourseLink.CourseId);
-            ViewData["UserAccountId"] = new SelectList(_context.UserAccounts, "Id", "Password", userAccountToCourseLink.UserAccountId);
-            return View(userAccountToCourseLink);
-        }
-
-        // POST: UserAccountToCourseLink/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("UserAccountId,CourseId")] UserAccountToCourseLink userAccountToCourseLink)
-        {
-            if (id != userAccountToCourseLink.UserAccountId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(userAccountToCourseLink);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UserAccountToCourseLinkExists(userAccountToCourseLink.UserAccountId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Title", userAccountToCourseLink.CourseId);
-            ViewData["UserAccountId"] = new SelectList(_context.UserAccounts, "Id", "Password", userAccountToCourseLink.UserAccountId);
-            return View(userAccountToCourseLink);
-        }
-
-        // GET: UserAccountToCourseLink/Delete/5
-        public async Task<IActionResult> Delete(long? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var userAccountToCourseLink = await _context.UserAccountToCourseLink
-                .Include(u => u.Course)
-                .Include(u => u.UserAccount)
-                .FirstOrDefaultAsync(m => m.UserAccountId == id);
+            var userAccountToCourseLink = _context.UserAccountToCourseLink
+                .Include(u => u.Course).Include(u => u.UserAccount)
+                .Where(l => l.UserAccountId.Equals(userAccountId))
+                .First(l => l.CourseId.Equals(courseId));
             if (userAccountToCourseLink == null)
             {
                 return NotFound();
@@ -150,17 +75,14 @@ namespace StudySystem.Controllers
         // POST: UserAccountToCourseLink/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
+        public IActionResult DeleteConfirmed(long userAccountId, long courseId)
         {
-            var userAccountToCourseLink = await _context.UserAccountToCourseLink.FindAsync(id);
+            var userAccountToCourseLink = _context.UserAccountToCourseLink
+                .Where(l => l.UserAccountId.Equals(userAccountId))
+                .First(l => l.CourseId.Equals(courseId));
             _context.UserAccountToCourseLink.Remove(userAccountToCourseLink);
-            await _context.SaveChangesAsync();
+            _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool UserAccountToCourseLinkExists(long id)
-        {
-            return _context.UserAccountToCourseLink.Any(e => e.UserAccountId == id);
         }
     }
 }

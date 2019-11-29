@@ -48,7 +48,7 @@ namespace StudySystem.Controllers
         // GET: Class/Create
         public IActionResult Create()
         {
-            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Id");
+            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "Title");
             return View();
         }
 

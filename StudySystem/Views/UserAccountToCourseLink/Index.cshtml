@@ -15,7 +15,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.UserAccount)
+                Student
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Course)
@@ -27,15 +27,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.UserAccount.Password)
+                @Html.DisplayFor(modelItem => item.UserAccount.Username)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Course.Title)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Delete", "Delete", new { userAccountId=item.UserAccountId, courseId=item.CourseId })
             </td>
         </tr>
 }
