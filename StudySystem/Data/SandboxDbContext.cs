@@ -38,5 +38,7 @@ namespace StudySystem.Data
                 .HasForeignKey<IndividualTaskGrade>(itg => itg.TaskId);
 
         }
+        
+        public DbSet<StudySystem.Models.UserAccountToCourseLink> UserAccountToCourseLink { get; set; }
     }
 }

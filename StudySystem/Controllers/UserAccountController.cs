@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -144,7 +145,33 @@ namespace StudySystem.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        
+        public IActionResult ValidatePassword(string password)
+        { 
+            if (password.Length < 6)
+            {
+                return Json(data: "Password should be at least 6 symbols long");
+            }
+            else if (password.Length > 255)
+            {
+                return Json(data: "Password should not be longer than 255 symbols");
+            }
+            else if (!Regex.Match(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$").Success)
+            {
+                return Json(data: "Password should contain lowercase and uppercase letters, and numbers");
+            }
+            return Json(data: true);
+        }
+        
+        public IActionResult ValidateRole(string role)
+        { 
+            if (!role.Equals("ADMIN") && !role.Equals("STUDENT"))
+            {
+                return Json(data: "Role can be either 'ADMIN' or 'STUDENT'");
+            }
+            return Json(data: true);
+        }
+        
         private bool UserAccountExists(long? id)
         {
             return _context.UserAccounts.Any(e => e.Id == id);

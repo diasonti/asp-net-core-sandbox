@@ -1,0 +1,22 @@
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using StudySystem.Data;
+
+namespace StudySystem.Validation
+{
+    public class CourseId : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            var dbContext = (SandboxDbContext) validationContext.GetService(typeof(SandboxDbContext));
+            var courseId = (long) value;
+
+            if (!dbContext.Courses.Any(c => c.Id.Equals(courseId)))
+            {
+                return new ValidationResult($"No course found with id {courseId}");
+            }
+            
+            return ValidationResult.Success;
+        }
+    }
+}

@@ -13,7 +13,9 @@ namespace StudySystem.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long? Id { get; set; }
 
-        [Column("title")] public string Title { get; set; }
+        [Column("title")]
+        [Required, StringLength(1000)]
+        public string Title { get; set; }
 
         public ICollection<UserAccountToCourseLink> StudentLinks { get; set; }
       
