@@ -12,9 +12,9 @@ namespace StudySystem.Controllers
 {
     public class UserAccountToCourseLinkController : Controller
     {
-        private readonly SandboxDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public UserAccountToCourseLinkController(SandboxDbContext context)
+        public UserAccountToCourseLinkController(ApplicationDbContext context)
         {
             _context = context;
         }

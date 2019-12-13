@@ -12,9 +12,9 @@ namespace StudySystem.Controllers
 {
     public class IndividualTaskController : Controller
     {
-        private readonly SandboxDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public IndividualTaskController(SandboxDbContext context)
+        public IndividualTaskController(ApplicationDbContext context)
         {
             _context = context;
         }

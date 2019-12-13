@@ -11,9 +11,9 @@ namespace StudySystem.Controllers
 {
     public class TaskController : Controller
     {
-        private readonly SandboxDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public TaskController(SandboxDbContext context)
+        public TaskController(ApplicationDbContext context)
         {
             _context = context;
         }

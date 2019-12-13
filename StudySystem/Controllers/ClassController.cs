@@ -12,9 +12,9 @@ namespace StudySystem.Controllers
 {
     public class ClassController : Controller
     {
-        private readonly SandboxDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ClassController(SandboxDbContext context)
+        public ClassController(ApplicationDbContext context)
         {
             _context = context;
         }

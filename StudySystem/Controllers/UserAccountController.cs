@@ -13,9 +13,9 @@ namespace StudySystem.Controllers
 {
     public class UserAccountController : Controller
     {
-        private readonly SandboxDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public UserAccountController(SandboxDbContext context)
+        public UserAccountController(ApplicationDbContext context)
         {
             _context = context;
         }

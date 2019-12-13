@@ -26,7 +26,7 @@ namespace StudySystem.Models
         
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            var dbContext = (SandboxDbContext) validationContext.GetService(typeof(SandboxDbContext));
+            var dbContext = (ApplicationDbContext) validationContext.GetService(typeof(ApplicationDbContext));
 
             var student = dbContext.UserAccounts.Include(s => s.CourseLinks).First(ua => ua.Id.Equals(UserAccountId));
             var validStudent = true;

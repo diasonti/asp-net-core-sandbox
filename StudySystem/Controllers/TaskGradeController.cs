@@ -12,9 +12,9 @@ namespace StudySystem.Controllers
 {
     public class TaskGradeController : Controller
     {
-        private readonly SandboxDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public TaskGradeController(SandboxDbContext context)
+        public TaskGradeController(ApplicationDbContext context)
         {
             _context = context;
         }

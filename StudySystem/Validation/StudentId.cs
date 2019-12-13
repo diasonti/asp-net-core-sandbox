@@ -8,7 +8,7 @@ namespace StudySystem.Validation
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var dbContext = (SandboxDbContext) validationContext.GetService(typeof(SandboxDbContext));
+            var dbContext = (ApplicationDbContext) validationContext.GetService(typeof(ApplicationDbContext));
             var studentId = (long) value;
 
             if (!dbContext.UserAccounts.Any(c => c.Id.Equals(studentId) && c.Role.Equals("STUDENT")))

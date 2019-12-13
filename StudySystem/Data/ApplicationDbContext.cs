@@ -3,9 +3,9 @@ using StudySystem.Models;
 
 namespace StudySystem.Data
 {
-    public class SandboxDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public SandboxDbContext(DbContextOptions options) : base(options)
+        public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
         
