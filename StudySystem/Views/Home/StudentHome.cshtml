@@ -1,0 +1,40 @@
+@using StudySystem.ViewModels
+@{
+    ViewData["Title"] = "Student";
+    var courses = (List<CourseViewModel>) ViewData["Courses"];
+    var currentUser = (UserAccountViewModel) ViewData["User"];
+}
+
+<div class="row">
+    <div class="col-lg">
+        <h2>Hello, @currentUser.Username</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg">
+        <h3>My courses</h3>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var course in courses)
+            {
+                <tr>
+                    <th scope="row">@course.Id</th>
+                    <td>@course.Title</td>
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Classes" asp-action="List" asp-route-courseId="@course.Id">Classes</a>
+                        <a class="btn btn-primary" asp-controller="Tasks" asp-action="ListByCourse" asp-route-courseId="@course.Id">Tasks</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg"></div>
+</div>

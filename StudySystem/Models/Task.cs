@@ -6,20 +6,15 @@ using StudySystem.Validation;
 namespace StudySystem.Models
 {
     [Table("task")]
-    public class Task
+    public class Task : BaseEntity
     {
-        [Key]
-        [Column("id")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long? Id { get; set; }
-
         [Column("text")]
         [Required, StringLength(10000), DataType(DataType.MultilineText)]
         public string Text { get; set; }
         
         [Column("class_id"), ForeignKey("Class")]
         [Required, ClassId]
-        public long? ClassId { get; set; }
+        public long ClassId { get; set; }
         
         public Class Class { get; set; }
         

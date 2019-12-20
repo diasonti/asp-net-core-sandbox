@@ -1,0 +1,69 @@
+@using StudySystem.ViewModels
+@{
+    ViewData["Title"] = "Admin";
+    var courses = (List<CourseViewModel>) ViewData["Courses"];
+    var users = (List<UserAccountViewModel>) ViewData["Users"];
+}
+
+<div class="row">
+    <div class="col-lg">
+        <h3>Users</h3>
+        <a class="btn btn-primary" asp-controller="Users" asp-action="Create">New user</a>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Username</th>
+                <th scope="col">Role</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var user in users)
+                        {
+                            <tr>
+                                <th scope="row">@user.Id</th>
+                                <td>@user.Username</td>
+                                <td>@user.Role</td>
+                                <td>
+                                    @if (user.Role.Equals("STUDENT"))
+                                    {
+                                        <a class="btn btn-primary" asp-controller="Courses" asp-action="List" asp-route-studentId="@user.Id">Courses</a>
+                                    }
+                                    <a class="btn btn-warning" asp-controller="Users" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
+                                    <a class="btn btn-danger" asp-controller="Users" asp-action="Remove" asp-route-id="@user.Id">Remove</a>
+                                </td>
+                            </tr>
+                        }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg">
+        <h3>Courses</h3>
+        <a class="btn btn-primary" asp-controller="Courses" asp-action="Create">New course</a>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var course in courses)
+            {
+                <tr>
+                    <th scope="row">@course.Id</th>
+                    <td>@course.Title</td>
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Students" asp-action="List" asp-route-courseId="@course.Id">Students</a>
+                        <a class="btn btn-primary" asp-controller="Classes" asp-action="List" asp-route-courseId="@course.Id">Classes</a>
+                        <a class="btn btn-warning" asp-controller="Courses" asp-action="Edit" asp-route-id="@course.Id">Edit</a>
+                        <a class="btn btn-danger" asp-controller="Courses" asp-action="Remove" asp-route-id="@course.Id">Remove</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

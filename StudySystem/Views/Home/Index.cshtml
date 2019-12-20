@@ -2,14 +2,16 @@
     ViewData["Title"] = "Home Page";
 }
 
-<ol>
-    <li><a asp-controller="UserAccount" asp-action="Index">UserAccount</a></li>
-    <li><a asp-controller="Course" asp-action="Index">Course</a></li>
-    <li><a asp-controller="Class" asp-action="Index">Class</a></li>
-    <li><a asp-controller="Task" asp-action="Index">Task</a></li>
-    <li><a asp-controller="TaskGrade" asp-action="Index">TaskGrade</a></li>
-    <li><a asp-controller="IndividualTask" asp-action="Index">IndividualTask</a></li>
-    <li><a asp-controller="IndividualTaskGrade" asp-action="Index">IndividualTaskGrade</a></li>
-    <li><a asp-controller="UserAccountToCourseLink" asp-action="Index">Student=>Course Link</a></li>
-</ol>
-
+<form asp-controller="Authentication" asp-action="Login">
+    <div class="form-group">
+        <label class="control-label">Username</label>
+        <input type="text" class="form-control" name="username"/>
+    </div>
+    <div class="form-group">
+            <label class="control-label">Password</label>
+            <input type="password" class="form-control" name="password"/>
+        </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Sign in</button>
+    </div>
+</form>

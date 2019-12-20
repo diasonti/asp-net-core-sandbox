@@ -20,13 +20,13 @@ namespace StudySystem.Models
 
         [Column("class_id"), ForeignKey("Class")]
         [Required, ClassId]
-        public long? ClassId { get; set; }
+        public long ClassId { get; set; }
 
         public Class Class { get; set; }
         
         [Column("student_id"), ForeignKey("Student")]
         [Required, StudentId]
-        public long? StudentId { get; set; }
+        public long StudentId { get; set; }
 
         public Class Student { get; set; }
 
