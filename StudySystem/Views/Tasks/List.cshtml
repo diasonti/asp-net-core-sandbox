@@ -1,13 +1,13 @@
 @using StudySystem.ViewModels
 @{
-    ViewData["Title"] = "Classes";
-    var course = (CourseViewModel) ViewData["Course"];
-    var classes = (List<ClassViewModel>) ViewData["Classes"];
+    ViewData["Title"] = "Tasks";
+    var clazz = (ClassViewModel) ViewData["Class"];
+    var tasks = (List<TaskViewModel>) ViewData["Tasks"];
 }
 
 <div class="row">
     <div class="col-lg">
-        <h3>@course.Title</h3>
+        <h3>@clazz.Topic</h3>
         <h4>Classes</h4>
         <table class="table table-hover">
             <thead>
@@ -18,16 +18,15 @@
             </tr>
             </thead>
             <tbody>
-            @foreach (var clazz in classes)
+            @foreach (var task in tasks)
             {
                 <tr>
-                    <th scope="row">@clazz.Id</th>
-                    <td>@clazz.Topic</td>
+                    <th scope="row">@task.Id</th>
+                    <td>@task.Text</td>
                     <td>
-                        <a class="btn btn-primary" asp-controller="Tasks" asp-action="ListByClass" asp-route-classId="@clazz.Id">Tasks</a>
                         @if(User.IsInRole("ADMIN")) 
                         {
-                        <a class="btn btn-primary" asp-controller="Classes" asp-action="Edit" asp-route-id="@clazz.Id">Edit</a>
+                        <a class="btn btn-primary" asp-controller="Tasks" asp-action="Edit" asp-route-id="@task.Id">Edit</a>
                         }
                     </td>
                 </tr>

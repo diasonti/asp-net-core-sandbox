@@ -105,6 +105,12 @@ namespace StudySystem.Services
         {
             Remove(id ,false);
         }
+
+        public List<TaskViewModel> GetByClassId(long classId)
+        {
+            return _classRepository.FindWithTasks(classId).Tasks.Select(ToViewModel).ToList();
+        }
+
         public void Remove(long id, bool individual)
         {
             Class clazz;

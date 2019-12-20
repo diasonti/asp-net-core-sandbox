@@ -20,7 +20,8 @@ namespace StudySystem.Services.Interfaces
         void Save(TaskViewModel viewModel);
         
         void Remove(long id);
-        
-        
+
+
+        List<TaskViewModel> GetByClassId(long classId);
     }
 }

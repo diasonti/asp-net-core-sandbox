@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace StudySystem.Controllers
@@ -5,21 +6,19 @@ namespace StudySystem.Controllers
     public class CoursesController : Controller
     {
         
-        public IActionResult List(long studentId)
-        {
-            throw new System.NotImplementedException();
-        }
-
+        [Authorize(Roles="ADMIN")]
         public IActionResult Create()
         {
             throw new System.NotImplementedException();
         }
 
+        [Authorize(Roles="ADMIN")]
         public IActionResult Edit(long id)
         {
             throw new System.NotImplementedException();
         }
 
+        [Authorize(Roles="ADMIN")]
         public IActionResult Remove(long id)
         {
             throw new System.NotImplementedException();

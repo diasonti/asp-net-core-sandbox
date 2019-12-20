@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StudySystem.Services.Interfaces;
 using StudySystem.ViewModels;
@@ -15,6 +16,7 @@ namespace StudySystem.Controllers
             _coursesService = coursesService;
         }
 
+        [Authorize(Roles="ADMIN, STUDENT")]
         public IActionResult List(long courseId)
         {
             ViewData["course"] = _coursesService.GetViewModel(courseId);
@@ -22,17 +24,20 @@ namespace StudySystem.Controllers
             return View();
         }
         
+        [Authorize(Roles="ADMIN")]
         public IActionResult Create()
         {
             return View("Edit");
         }
         
+        [Authorize(Roles="ADMIN")]
         public IActionResult Edit(long id)
         {
             return View("Edit", _classesService.GetViewModel(id));
         }
         
         [HttpPost]
+        [Authorize(Roles="ADMIN")]
         public IActionResult Edit([Bind("Id,Topic,CourseId")] ClassViewModel form)
         {
             if (ModelState.IsValid)
@@ -43,6 +48,7 @@ namespace StudySystem.Controllers
             return View("Edit", form);
         }
 
+        [Authorize(Roles="ADMIN")]
         public IActionResult Remove(long id)
         {
             _classesService.Remove(id);
